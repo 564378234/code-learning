@@ -9,7 +9,7 @@ class Solution {
             int right = nums.size() - 1;
             while (left<=right)
             {
-                int mid = left + ((right-left)>>1);
+                int mid = left + ((right-left)>>1);// 防止溢出 等同于(left + right)/2
                 if (nums[mid]>target)
                 {
                     right = mid - 1;
