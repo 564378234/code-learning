@@ -3,10 +3,11 @@ using namespace std;
 
 // 定义链表结构体
 struct ListNode{
-    int val;//数据值
-    ListNode* next;//指向下一个的指针
-    ListNode() : val(0), next(nullptr){}
+    int val;//数据值，这俩是成员变量
+    ListNode* next;//指向下一个的指针，这俩是成员变量
+    ListNode() : val(0), next(nullptr){}//{}代表构造函数的函数体，空为不进行任何额外操作
     ListNode(int x) : val(x), next(nullptr){}//构造函数，接受一个参数x ，：之后代表初始化列表，在对象创建时直接初始化成员变量
+    //默认的单参数构造函数可以隐式转换ListNode a = 12; //相当于 ListNode a = ListNode(12);
     ListNode(int x, ListNode* next01) : val(x), next(next01){}
 };
 
