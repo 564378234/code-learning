@@ -99,16 +99,23 @@ int main(){
     for(const auto& [key, val] : map1){//const用来防止修改键值对的元素，auto&中的&用来防止拷贝提高效率
         cout << key << " " << val << endl;//输出键值对
     }
-    map1["xiao1"] = 26;//修改键值对
+    map1["xiao2"] = 26;//修改键值对
     map1["xiao3"] = 28;//添加键值对
     map1.insert({"xiao4", 35});//使用方法insert()添加，如果存在则失效
     map1.emplace("xiao5", 40);//方法emplace()
     cout << "使用extract()提取键值对，修改键或值" << endl;
     auto node1 = map1.extract("xiao1");//提取键值对（此时键值对已经被拿出容器了，修改后需要再次放回），返回一个node，可以插入到其他map中
-    if(!node1.empty()){
+    if(!node1.empty()){//也可以用empty()检查map1是否为空
         node1.key() = "xiao1_1";
         node1.mapped() = 25;//修改节点值的方法
         map1.insert(move(node1));//move()用来移动node，防止拷贝，将节点再次放回容器
+    }
+    cout << "使用erase()删除键值对" << endl;
+    map1.erase("xiao4");//删除键值对
+    // map1.erase(map1.begin(), next(map1.begin(), 2));//删除前两个键值对
+    auto it4 = map1.find("xiao2");//find()查找键值对，返回一个迭代器
+    if(it4 != map1.end()){//检查是否找到
+        cout << it4->first << " " << it4->second << endl;//输出键值对
     }
     //无序唯一键值对：unordered_map
     //有序不唯一键值对：multimap

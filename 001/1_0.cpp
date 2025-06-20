@@ -12,7 +12,7 @@ int main(){
     string s = "hello";
     
     //使用array创建一个固定大小的数组
-    array<int, 5> arr2 = {1, 2, 3, 4, 5};
+    array<int, 5> arr2 = {1, 2, 3, 4, 5};//如果不填满会被初始化成0
     cout << "arr2[2]=" << arr2[2] << endl;
     cout << "arr2.at(3)=" << arr2[3] << endl;// at函数可以防止越界
     cout << "arr2.size()=" << arr2.size() << endl;//返回数组的大小
