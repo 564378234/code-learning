@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <set> //set是红黑树??????实现的,这里面还有一个multiset,可以重复
 #include <vector>
+#include <map> //map红黑树实现
 using namespace std;
 
 int main(){
@@ -62,6 +63,7 @@ int main(){
     set3.erase(set3.begin(), set3.end());//清空集合
     set3.clear();//清空集合
 
+    ////////////////////////////////////////////////////////////////////////////
     //将其他容器中的元素去重，可以先转换成set(有序)，unordered_set(无序)然后再转换回来
     vector<int> vector1 = {1, 2, 3, 4, 5, 5, 5, 5};
     int arr[] = {3, 1, 4, 1, 5, 9, 2, 6, 5};
@@ -75,16 +77,40 @@ int main(){
     }
     //转换回vector
     vector<int> unique_vec(newvector1.begin(), newvector1.end());
+    ////////////////////////////////////////////////////////////////////////////
     
-    //创建一个哈希表
-    unordered_map<char, char> pairs = {
+    //键值对(有三个)
+    unordered_map<char, char> pairs00 = {
         //键是x，值是fx
         //输入x，返回fx
         //访问方式：pairs['x']
         //pairs.count('x')返回1,说明含有名为'x'的键
-        {'x', 'fx'},
+        {'x', 'fx'},//双引号代表字符串string，单引号里的多字符代表多字符字面量，类型是int，输入和输出都难以区分
         {')', '('},
         {']', '['},
         {'}', '{'}
     };
+
+    //有序唯一键值对：map
+    map<string, int> map1 = {
+        {"xiao1", 25},//双引号代表字符串string，单引号变成了int类型
+        {"xiao2", 30}
+    };
+    for(const auto& [key, val] : map1){//const用来防止修改键值对的元素，auto&中的&用来防止拷贝提高效率
+        cout << key << " " << val << endl;//输出键值对
+    }
+    map1["xiao1"] = 26;//修改键值对
+    map1["xiao3"] = 28;//添加键值对
+    map1.insert({"xiao4", 35});//使用方法insert()添加，如果存在则失效
+    map1.emplace("xiao5", 40);//方法emplace()
+    cout << "使用extract()提取键值对，修改键或值" << endl;
+    auto node1 = map1.extract("xiao1");//提取键值对（此时键值对已经被拿出容器了，修改后需要再次放回），返回一个node，可以插入到其他map中
+    if(!node1.empty()){
+        node1.key() = "xiao1_1";
+        node1.mapped() = 25;//修改节点值的方法
+        map1.insert(move(node1));//move()用来移动node，防止拷贝，将节点再次放回容器
+    }
+    //无序唯一键值对：unordered_map
+    //有序不唯一键值对：multimap
+
 }
