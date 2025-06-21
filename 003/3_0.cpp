@@ -75,8 +75,9 @@ int main(){
     for(int x : vector2){
         newvector2.insert(x);//插入元素，重复元素无效,可以进行其他if操作
     }
-    //转换回vector
+    //转换回vector，然后再return unique_vec
     vector<int> unique_vec(newvector1.begin(), newvector1.end());
+    //也可以不新命名，直接return vector<int>(newvector1.begin(), newvector1.end());
     ////////////////////////////////////////////////////////////////////////////
     
     //键值对(有三个)
