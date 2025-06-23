@@ -70,7 +70,7 @@ public:
         for (char c : s) {
             if (pairs.count(c)) {  // 如果是右括号
                 if (st.empty() || st.top() != pairs[c]) return false;
-                st.pop();
+                st.pop();// 把匹配的出栈
             } else {  // 左括号直接入栈
                 st.push(c);
             }
