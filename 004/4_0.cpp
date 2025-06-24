@@ -21,5 +21,12 @@ int main(){
     s.replace(6, 2, " your");
     cout << "s.replace()是替换指定位置的字符串" << s << endl;
     // s.clear();//清空字符串
+
+    //如果是一个字符串的容器vector<string>，可以使用stoll("string to long long" 的缩写)或stol或stoi将字符串转换为整数
+    string s1 = "123";
+    long long a = stoll(s1);
+    //如果是一个字符串的容器vector<int>，可以使用to_string将整数转换为字符串
+    int b = 123;
+    string s2 = to_string(b);
     return 0;
 }
