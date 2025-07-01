@@ -38,6 +38,26 @@ public:
     }
 };
 
+class Solution2 {
+public:
+    int trap(vector<int>& height) {
+        int blackcount = 0;
+        int maxheight = 0;
+        for(int num : height){
+            blackcount += num;
+            maxheight = max(maxheight, num);
+        }
+        int left = 0, right = height.size() - 1;
+        int count = 0;
+        for(int h = 1; h <= maxheight; h++){
+            while(height[left] < h)left++;
+            while(height[right] < h)right--;
+            count = count + (right - left + 1);
+        }
+        return count - blackcount;
+    }
+};
+
 int main() {
     Solution sol;
     vector<pair<vector<int>, int>> testCases = {

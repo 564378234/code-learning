@@ -67,10 +67,10 @@ public:
                     j++;
                     k--;
                 }else if(sum > 0){
-                    while(j < k && nums[k] == nums[k - 1])k--;
+                    while(j < k && nums[k] == nums[k - 1])k--;//加不加差不多？加的话时间会快一点？
                     k--;
                 }else {
-                    while(j < k && nums[j] == nums[j + 1])j++;
+                    while(j < k && nums[j] == nums[j + 1])j++;//加不加差不多？加的话时间会快一点？
                     j++;
                 }
             }
