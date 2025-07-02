@@ -28,5 +28,10 @@ int main(){
     //如果是一个字符串的容器vector<int>，可以使用to_string将整数转换为字符串
     int b = 123;
     string s2 = to_string(b);
+
+    //字符串重新设定长度
+    s.resize(5);
+    cout << "s.resize()是重新设定字符串的长度" << s << endl;
+    
     return 0;
 }
