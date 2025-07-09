@@ -8,7 +8,7 @@ public:
         deque<int> deq;
         int maxnum = nums[0], n = nums.size(), cur;
         vector<int> result;
-        if(n == 1)return vector<int>{maxnum};//vector<int>{maxnum}和vector<int>(maxnum)有什么区别
+        if(n == 1)return vector<int>{maxnum};//vector<int>{maxnum}，创建并添加一个maxnum元素，和vector<int>(maxnum)，创建maxnum个0元素，有什么区别
         for(int i = 0; i < k; i++){
             deq.push_back(nums[i]);
             maxnum = max(maxnum, nums[i]);
@@ -39,6 +39,45 @@ public:
                 result.push_back(maxnum);
                 continue;
             }
+        }
+        return result;
+    }
+};
+
+class Solution {//自己新建一个单调队列类
+private://私有成员变量
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    class mydeque{
+        public:
+            deque<int> deq;//底层是deque
+            void pop(int value){//这里处理要被移出队列的元素，如果deque的队首元素等于value，则删除
+                if(!deq.empty() && value == deq.front()){
+                    deq.pop_front();
+                }
+            }
+            void push(int value){//处理进入队列的元素，从尾端元素开始比较，如果队尾元素小于value，无论如何他都不可能是该队列的最大值，删除
+                while(!deq.empty() && deq.back() < value){
+                    deq.pop_back();
+                }
+                deq.push_back(value);
+            }
+            int front(){//获取最大值
+                return deq.front();
+            }
+    };
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        mydeque deq;
+        vector<int> result;
+        for(int i = 0; i < k; i++){
+            deq.push(nums[i]);
+        }
+        result.push_back(deq.front());
+        for(int i = k; i < nums.size(); i++){
+            deq.pop(nums[i - k]);
+            deq.push(nums[i]);
+            result.push_back(deq.front());
         }
         return result;
     }
